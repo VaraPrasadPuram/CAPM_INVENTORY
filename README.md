@@ -1,1 +1,1 @@
-# CAPM_INVENTORY
+This is CAPM Inventory Project POC.
