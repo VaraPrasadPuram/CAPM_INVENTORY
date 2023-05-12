@@ -1,0 +1,23 @@
+.zEP_headerToolbar {
+    background-color: cornsilk;
+    border-bottom: none;
+}
+.zEP_titleTxt{
+    font-size: 2rem;
+    font-weight: bold;
+}
+.zVB_login{
+    width: 35rem;
+    margin: auto;
+    margin-top: 10rem;
+    margin-bottom: 10rem;
+    border: 2px solid;
+}
+
+.zEP_toolbarNoBdr{
+    border-bottom: none;
+    height: fit-content !important;
+}
+.zEP_pageContent{
+    border-bottom: none;
+}

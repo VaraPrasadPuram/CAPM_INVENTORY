@@ -1,0 +1,78 @@
+<mvc:View controllerName="com.apple.assign.inventory.controller.AddInventory" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m"  xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+    <Page id="page" title="{i18n>title}" showHeader="false">
+        <Panel class="zEP_headerToolbar">
+            <Toolbar class="zEP_toolbarNoBdr">
+                <Image id="idnotifaction" width="4rem" class="zEP_iconNotification" src="images/Wipro_logo_PNG2.png" />
+                <ToolbarSpacer />
+                <Title text="{i18n>title}" class="zEP_titleTxt" />
+                <ToolbarSpacer />
+                <Avatar displaySize="S" backgroundColor="Transparent" press="onPress" />
+            </Toolbar>
+        </Panel>
+
+        <Panel width="auto" class="sapUiResponsiveMargin">
+            <headerToolbar>
+                <OverflowToolbar>
+                    <Title text="Add Product Inventory" />
+                    <ToolbarSpacer />
+                    <Button text="{i18n>home}" press="onClickHomeBtn" />
+                    <Button text="{i18n>addProdMaster}" press="onClickAddProdMaster" />
+                    <Button text="{i18n>anlyticDashboard}" press="onClickAnlyticDashboard" />
+                </OverflowToolbar>
+            </headerToolbar>
+
+            <!-- <VBox class="zVB_login" > -->
+            <f:SimpleForm
+                editable="true"
+                layout="ResponsiveGridLayout"
+                title=""
+                labelSpanXL="4"
+                labelSpanL="4"
+                labelSpanM="12"
+                labelSpanS="12"
+                adjustLabelSpan="false"
+                emptySpanXL="0"
+                emptySpanL="0"
+                emptySpanM="0"
+                emptySpanS="0"
+                columnsXL="2"
+                columnsL="2"
+                columnsM="1"
+                singleContainerFullSize="false"
+            >
+                <f:content>
+                    <core:Title text="" />
+                    <Label text="Product ID" required="true" />
+                    <Input value="{addProdInvetoryModel>/ProductId}" />
+                    <Label text="Product Category" required="true" />
+                    <Input value="{addProdInvetoryModel>/ProductCategory}" />
+                    <Label text="Product Type" required="true" />
+                    <Input value="{addProdInvetoryModel>/ProductType}" />
+                    <Label text="Added On" required="true" />
+                    <Input value="{addProdInvetoryModel>/AddedOn}" />
+                    <Label text="Added By" required="true" />
+                    <Input value="{addProdInvetoryModel>/AddedBy}" />
+                    <Label text="Quantity" required="true" />
+                    <Input value="{addProdInvetoryModel>/Qty}" />
+                    <core:Title text="" />
+                   
+                    <Label text="Unit of Measure" required="true" />
+                    <Input value="{addProdInvetoryModel>/UOM}" />
+                    <Label text="Expiry Date" required="true" />
+                    <Input value="{addProdInvetoryModel>/ExpireDate}" />
+                    <Label text="Batch Number" required="true" />
+                    <Input value="{addProdInvetoryModel>/BatchNo}" />
+
+                    <Label text="Stocks" required="true" />
+                    <Input value="{addProdInvetoryModel>/Stock}" />
+                    <Label text="Unit" required="true" />
+                    <Input value="{addProdInvetoryModel>/Unit}" />
+
+                    <Label text="" />
+                    <Button text="Submit" press="onPressAddInventorySubmit" />
+                </f:content>
+            </f:SimpleForm>
+            <!-- </VBox> -->
+        </Panel>
+    </Page>
+</mvc:View>

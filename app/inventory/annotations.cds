@@ -1,0 +1,1 @@
+using InventorySrv as service from '../../srv/cap-srv';
