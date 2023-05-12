@@ -1,0 +1,10 @@
+POST  http://localhost:4004/Products
+Content-Type: application/json
+
+{"ProductId":"P101",
+ "ProductCategory":"Veg",
+ "ProductName":"Apple",
+ "ProductType":"temp",
+"UOM":"5",
+"Active":true
+ }
