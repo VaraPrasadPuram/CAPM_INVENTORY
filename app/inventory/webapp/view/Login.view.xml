@@ -1,0 +1,61 @@
+<mvc:View controllerName="com.apple.assign.inventory.controller.Login" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+    <Page id="page" title="{i18n>title}" showHeader="false">
+        <Panel class="zEP_headerToolbar">
+            <Toolbar class="zEP_toolbarNoBdr">
+                <Image id="idnotifaction" width="4rem" class="zEP_iconNotification" src="images/Wipro_logo_PNG2.png" />
+                <ToolbarSpacer />
+                <Title text="{i18n>title}" class="zEP_titleTxt" />
+                <ToolbarSpacer />
+            </Toolbar>
+        </Panel>
+        <content>
+            <Panel class="zEP_pageContent">
+                <!-- <VBox class="zVB_login" fitContainer="true" justifyContent="Center" alignItems="Center" alignContent="Center"> -->
+                    <!-- <HBox>
+                            <Text text="Login Page"></Text>
+                        </HBox>
+                        <HBox>
+                            <Label text="User Name" required="true"></Label>
+                            <Input id="sIdUserName"/>
+                        </HBox>
+                        <HBox >
+                            <Label text="Password" required="true"></Label>
+                            <Input id="sIdPwde" type="Password" placeholder="Enter password"/>
+                        </HBox>
+                        <Button text="Login" press="fnSubmitFunction"></Button>  -->
+
+                    <VBox class="zVB_login" fitContainer="true" justifyContent="Center" alignItems="Center" alignContent="Center">
+                        <f:SimpleForm
+                            id="SimpleFormChange354"
+                            editable="true"
+                            layout="ResponsiveGridLayout"
+                            labelSpanXL="3"
+                            labelSpanL="3"
+                            labelSpanM="3"
+                            labelSpanS="12"
+                            adjustLabelSpan="false"
+                            emptySpanXL="0"
+                            emptySpanL="0"
+                            emptySpanM="0"
+                            emptySpanS="0"
+                            columnsXL="3"
+                            columnsL="3"
+                            columnsM="3"
+                            singleContainerFullSize="false"
+                        >
+                            <f:content>
+                                <Label text="User Name" required="true" />
+                                <Input id="sIdUserName" />
+                                <Label text="Password" required="true" />
+                                <Input id="sIdPwde" type="Password" placeholder="Enter password" />
+
+                                <Label text="" />
+                                <Button text="Login" press="fnSubmitFunction" />
+                            </f:content>
+                        </f:SimpleForm>
+                    </VBox>
+                
+            </Panel>
+        </content>
+    </Page>
+</mvc:View>

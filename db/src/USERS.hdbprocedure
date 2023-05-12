@@ -1,0 +1,8 @@
+PROCEDURE "USERS"( )
+   LANGUAGE SQLSCRIPT
+   SQL SECURITY INVOKER
+   --DEFAULT SCHEMA <default_schema_name>
+  AS
+BEGIN
+   
+END

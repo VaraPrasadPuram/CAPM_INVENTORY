@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
+        <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml">
+        <edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+    </edmx:Reference>
+    <edmx:DataServices>
+        <Schema Namespace="InventorySrv" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+            <EntityContainer Name="EntityContainer">
+                <EntitySet Name="Users" EntityType="InventorySrv.Users"/>
+                <EntitySet Name="Products" EntityType="InventorySrv.Products"/>
+                <EntitySet Name="Inventory" EntityType="InventorySrv.Inventory"/>
+            </EntityContainer>
+            <EntityType Name="Users">
+                <Property Name="Username" Type="Edm.String"/>
+                <Property Name="Password" Type="Edm.String"/>
+            </EntityType>
+            <EntityType Name="Products">
+                <Property Name="Prd_Id" Type="Edm.String"/>
+                <Property Name="Prd_Cat" Type="Edm.String"/>
+                <Property Name="Prd_Name" Type="Edm.String"/>
+                <Property Name="Prd_Type" Type="Edm.String"/>
+                <Property Name="Created_On" Type="Edm.DateTimeOffset"/>
+                <Property Name="Created_By" Type="Edm.String"/>
+                <Property Name="UOM" Type="Edm.Boolean"/>
+                <Property Name="ACTIVE" Type="Edm.Boolean"/>
+            </EntityType>
+            <EntityType Name="Inventory">
+                <Property Name="Prd_Id" Type="Edm.String"/>
+                <Property Name="Prd_Cat" Type="Edm.String"/>
+                <Property Name="Prd_Type" Type="Edm.String"/>
+                <Property Name="Added_On" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="Added_By" Type="Edm.String"/>
+                <Property Name="Qty" Type="Edm.String"/>
+                <Property Name="JUOM" Type="Edm.String"/>
+                <Property Name="Expiry_Dt" Type="Edm.Date"/>
+                <Property Name="Batch_No" Type="Edm.String"/>
+            </EntityType>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
