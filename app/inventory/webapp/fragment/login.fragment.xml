@@ -2,22 +2,14 @@
 	xmlns="sap.m"
 	xmlns:l="sap.ui.layout" 
   xmlns:core="sap.ui.core">
-	<Popover
-		title="Login"
-		class="sapUiContentPadding"
-		placement="Bottom"
-			initialFocus="email">
+	<Popover title="Login" class="sapUiContentPadding" placement="Bottom" initialFocus="email">
     <VBox>
       <Input placeholder="User Name"/>
       <Input placeholder="Password"/>
-      
-
       <HBox justifyContent="Center">
-        <Text text="oder"/>
+      <Text text="oder"/>
       </HBox>
       <Button text="Logino"  type="Emphasized" width="100%"/>
-
-   
     </VBox>
 	</Popover>
 </core:FragmentDefinition>

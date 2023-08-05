@@ -3,27 +3,34 @@
     xmlns="sap.m"
     xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
     <Page id="page" title="{i18n>title}" showHeader="false">
-    <Panel class="zEP_headerToolbar">
-            <Toolbar class="zEP_toolbarNoBdr">
-                <Image id="idnotifaction" width="4rem" class="zEP_iconNotification" src="images/Wipro_logo_PNG2.png" />
+       <Panel class="zEP_headerTop">
+            <Toolbar class="zEP_titleBar zEP_container">
+                <VBox>
+                <Title text="Welcome to IMS" class="zEP_title" />
+                 <Title text="Process of sourcing, storing and overseeing a company's inventory" class="zEP_subTitle" />
+                </VBox>
                 <ToolbarSpacer />
-                <Title text="{i18n>title}" class="zEP_titleTxt" />
-                <ToolbarSpacer />
-                	<Avatar
-							displaySize="S"
-							backgroundColor="Transparent"
-							press="onPress"/>
+                	<Avatar src="{oJLoginuserModel>/User/ImageURL}" displaySize="S" backgroundColor="Transparent" press="onPress"/>
             </Toolbar>
         </Panel>
-      
-            <Panel width="auto" class="sapUiResponsiveMargin">
+
+                       <Panel class="zEP_actionBtns">
+        <Toolbar class="zEP_toolbarNoBdr">
+            <ToolbarSpacer />
+                        
+
+        	 <Button text="{i18n>home}" press="onClickHomeBtn" />
+                      <Button text="{i18n>addProdInventory}" press="onClickAddProdInventory" />
+                       <Button text="{i18n>anlyticDashboard}" press="onClickAnlyticDashboard" />
+        </Toolbar>
+        </Panel>
+      <HBox  class="zEP_container">
+            <Panel class="zEP_formBox">
 		<headerToolbar>
 			<OverflowToolbar>
 				<Title text="Add Product Master"/>
 				<ToolbarSpacer />
-                	 <Button text="{i18n>home}" press="onClickHomeBtn" />
-                      <Button text="{i18n>addProdInventory}" press="onClickAddProdInventory" />
-                       <Button text="{i18n>anlyticDashboard}" press="onClickAnlyticDashboard" />
+                
 			</OverflowToolbar>
 		</headerToolbar>
               
@@ -41,39 +48,40 @@
 			emptySpanL="0"
 			emptySpanM="0"
 			emptySpanS="0"
-			columnsXL="2"
-			columnsL="2"
+			columnsXL="3"
+			columnsL="3"
 			columnsM="1"
 			singleContainerFullSize="false" >
                             <f:content>
                             	<core:Title text="" />
-                                <Label text="Product ID" required="true" />
-                                <Input value="{addProductsModel>/ProductId}" />
-                                <Label text="Product Name" required="true" />
-                                 <Input value="{addProductsModel>/ProductName}" />
-                                   <Label text="Category" required="true" />
-                                 <Input value="{addProductsModel>/ProductCategory}" />
-                                   <Label text="Created By" required="true" />
-                                 <Input value="{addProductsModel>/CreatedBy}" />
+                                <Label class="zEP_label" text="Product ID" required="true" />
+                                <Input class="zEP_input" value="{addProductsModel>/ProductId}" />
+                                <Label class="zEP_label" text="Product Name" required="true" />
+                                 <Input class="zEP_input" value="{addProductsModel>/ProductName}" />
                                  	<core:Title text="" />
-                                   <Label text="Created On" required="true" />
-                                 <Input value="{addProductsModel>/CreatedOn}" />
+                                   <Label class="zEP_label" text="Category" required="true" />
+                                 <Input class="zEP_input" value="{addProductsModel>/ProductCategory}" />
+                                   
                                  
-                                   <Label text="Unit of Measure" required="true" />
-                                 <Input value="{addProductsModel>/UOM}" />
-                                   <Label text="Active" required="true" />
-                                 <Input value="{addProductsModel>/Active}" />
-                                   <Label text="Product Type" required="true" />
-                                 <Input value="{addProductsModel>/ProductType}" />
                                   
-                                <Label text="" />
-                                <Button text="Submit" press="onPressAddProductSubmit" />
+                                 
+                                   <Label  class="zEP_label" text="Unit of Measure" required="true" />
+                                 <Input class="zEP_input" value="{addProductsModel>/UOM}" />
+                                 	<core:Title text="" />
+                                   <Label class="zEP_label" text="Active" required="true" />
+                                 <Input class="zEP_input" value="{addProductsModel>/Active}" />
+                                   <Label class="zEP_label" text="Product Type" required="true" />
+                                 <Input class="zEP_input" value="{addProductsModel>/ProductType}" />
+                                   	<core:Title text="" />
+                                          <HBox> </HBox><core:Title text="" /><HBox> </HBox><core:Title text="" />
+                                            <HBox class="zEP_pullRight">   
+                 <Button class="zEP_primary" text="Submit" press="onPressAddProductSubmit" />
+     </HBox>
                             </f:content>
                         </f:SimpleForm>
                     <!-- </VBox> -->
            
-            
         </Panel>
-        
+        </HBox>
     </Page>
 </mvc:View>

@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="CV_INVENTORY" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="true">
+<descriptions defaultDescription="CV_INVENTORY"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="MY_INVENTORY_PRODUCTS_MASTER">
+    <resourceUri>MY_INVENTORY_PRODUCTS_MASTER</resourceUri>
+  </DataSource>
+  <DataSource id="MY_INVENTORY_PRODUCTS_INVENTORY">
+    <resourceUri>MY_INVENTORY_PRODUCTS_INVENTORY</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <viewAttributes>
+      <viewAttribute id="PRODUCTID"/>
+      <viewAttribute id="PRODUCTCATEGORY"/>
+      <viewAttribute id="PRODUCTNAME"/>
+      <viewAttribute id="UOM"/>
+      <viewAttribute id="ACTIVE"/>
+      <viewAttribute id="CREATEDAT"/>
+      <viewAttribute id="CREATEDBY"/>
+      <viewAttribute id="MODIFIEDAT"/>
+      <viewAttribute id="MODIFIEDBY"/>
+      <viewAttribute id="PRODUCTTYPE"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="MY_INVENTORY_PRODUCTS_MASTER"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_2">
+    <viewAttributes>
+      <viewAttribute id="CREATEDAT"/>
+      <viewAttribute id="CREATEDBY"/>
+      <viewAttribute id="MODIFIEDAT"/>
+      <viewAttribute id="MODIFIEDBY"/>
+      <viewAttribute id="PRODUCTID"/>
+      <viewAttribute id="PRODUCTCATEGORY"/>
+      <viewAttribute id="PRODUCTTYPE"/>
+      <viewAttribute id="ADDEDON"/>
+      <viewAttribute id="ADDEDBY"/>
+      <viewAttribute id="QTY"/>
+      <viewAttribute id="STOCK"/>
+      <viewAttribute id="UOM"/>
+      <viewAttribute id="EXPIREDATE"/>
+      <viewAttribute id="BATCHNO"/>
+      <viewAttribute id="UNIT"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="MY_INVENTORY_PRODUCTS_INVENTORY"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="C1_N" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="PRODUCTID"/>
+      <viewAttribute id="PRODUCTCATEGORY"/>
+      <viewAttribute id="PRODUCTNAME"/>
+      <viewAttribute id="PRODUCTTYPE"/>
+      <viewAttribute id="UOM"/>
+      <viewAttribute id="ACTIVE"/>
+      <viewAttribute id="CREATEDAT" aggregationType="min"/>
+      <viewAttribute id="CREATEDBY"/>
+      <viewAttribute id="MODIFIEDAT" aggregationType="min"/>
+      <viewAttribute id="MODIFIEDBY"/>
+      <viewAttribute id="ADDEDON"/>
+      <viewAttribute id="ADDEDBY"/>
+      <viewAttribute id="QTY"/>
+      <viewAttribute id="STOCK"/>
+      <viewAttribute id="UOM_1"/>
+      <viewAttribute id="EXPIREDATE"/>
+      <viewAttribute id="BATCHNO"/>
+    
+      <viewAttribute hidden="true" id="JOIN$PRODUCTID$PRODUCTID"/>
+      <viewAttribute hidden="true" id="JOIN$PRODUCTCATEGORY$PRODUCTCATEGORY"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Projection_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="PRODUCTID" source="PRODUCTID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PRODUCTCATEGORY" source="PRODUCTCATEGORY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PRODUCTNAME" source="PRODUCTNAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="UOM" source="UOM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ACTIVE" source="ACTIVE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CREATEDAT" source="CREATEDAT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CREATEDBY" source="CREATEDBY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MODIFIEDAT" source="MODIFIEDAT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MODIFIEDBY" source="MODIFIEDBY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PRODUCTTYPE" source="PRODUCTTYPE"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$PRODUCTID$PRODUCTID" source="PRODUCTID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$PRODUCTCATEGORY$PRODUCTCATEGORY" source="PRODUCTCATEGORY"/>
+    </input>
+    <input node="Projection_2">
+      <mapping xsi:type="Calculation:AttributeMapping" target="ADDEDON" source="ADDEDON"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ADDEDBY" source="ADDEDBY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="QTY" source="QTY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="STOCK" source="STOCK"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="UOM_1" source="UOM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EXPIREDATE" source="EXPIREDATE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="BATCHNO" source="BATCHNO"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$PRODUCTID$PRODUCTID" source="PRODUCTID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$PRODUCTCATEGORY$PRODUCTCATEGORY" source="PRODUCTCATEGORY"/>
+    </input>
+    <joinAttribute name="JOIN$PRODUCTID$PRODUCTID"/>
+    <joinAttribute name="JOIN$PRODUCTCATEGORY$PRODUCTCATEGORY"/>
+  </calculationView>
+</calculationViews>
+
+<logicalModel id="Join_1">
+  <attributes>
+    <attribute id="PRODUCTID" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PRODUCTID"/>
+      <keyMapping columnObjectName="Join_1" columnName="PRODUCTID"/>
+    </attribute>
+    <attribute id="PRODUCTCATEGORY" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PRODUCTCATEGORY"/>
+      <keyMapping columnObjectName="Join_1" columnName="PRODUCTCATEGORY"/>
+    </attribute>
+    <attribute id="PRODUCTNAME" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PRODUCTNAME"/>
+      <keyMapping columnObjectName="Join_1" columnName="PRODUCTNAME"/>
+    </attribute>
+    <attribute id="PRODUCTTYPE" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PRODUCTTYPE"/>
+      <keyMapping columnObjectName="Join_1" columnName="PRODUCTTYPE"/>
+    </attribute>
+    <attribute id="UOM" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="UOM"/>
+      <keyMapping columnObjectName="Join_1" columnName="UOM"/>
+    </attribute>
+    <attribute id="ACTIVE" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ACTIVE"/>
+      <keyMapping columnObjectName="Join_1" columnName="ACTIVE"/>
+    </attribute>
+    <attribute id="CREATEDAT" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CREATEDAT"/>
+      <keyMapping columnObjectName="Join_1" columnName="CREATEDAT"/>
+    </attribute>
+    <attribute id="CREATEDBY" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CREATEDBY"/>
+      <keyMapping columnObjectName="Join_1" columnName="CREATEDBY"/>
+    </attribute>
+    <attribute id="MODIFIEDAT" order="9" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="MODIFIEDAT"/>
+      <keyMapping columnObjectName="Join_1" columnName="MODIFIEDAT"/>
+    </attribute>
+    <attribute id="MODIFIEDBY" order="10" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="MODIFIEDBY"/>
+      <keyMapping columnObjectName="Join_1" columnName="MODIFIEDBY"/>
+    </attribute>
+    <attribute id="ADDEDON" order="11" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ADDEDON"/>
+      <keyMapping columnObjectName="Join_1" columnName="ADDEDON"/>
+    </attribute>
+    <attribute id="ADDEDBY" order="12" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ADDEDBY"/>
+      <keyMapping columnObjectName="Join_1" columnName="ADDEDBY"/>
+    </attribute>
+    <attribute id="QTY" hidden="true" order="13" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="QTY"/>
+      <keyMapping columnObjectName="Join_1" columnName="QTY"/>
+    </attribute>
+    <attribute id="STOCK" hidden="true" order="14" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="STOCK"/>
+      <keyMapping columnObjectName="Join_1" columnName="STOCK"/>
+    </attribute>
+    <attribute id="UOM_1" order="15" displayAttribute="false" attributeHierarchyActive="false" hidden="true">
+      <descriptions defaultDescription="UOM"/>
+      <keyMapping columnObjectName="Join_1" columnName="UOM_1"/>
+    </attribute>
+    <attribute id="EXPIREDATE" order="16" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EXPIREDATE"/>
+      <keyMapping columnObjectName="Join_1" columnName="EXPIREDATE"/>
+    </attribute>
+    <attribute id="BATCHNO" order="17" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="BATCHNO"/>
+      <keyMapping columnObjectName="Join_1" columnName="BATCHNO"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures>
+    <measure id="CC_QTY" order="18" aggregationType="sum" measureType="simple" datatype="INTEGER" expressionLanguage="SQL" restrictionExpressionLanguage="SQL">
+      <descriptions defaultDescription="QTY"/>
+      <formula>TO_INTEGER(&quot;QTY&quot;)</formula>
+      
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="CC_STOCK" order="19" aggregationType="sum" measureType="simple" datatype="INTEGER" expressionLanguage="SQL" restrictionExpressionLanguage="SQL">
+      <descriptions defaultDescription="STOCK"/>
+      <formula>TO_INTEGER(&quot;STOCK&quot;)</formula>
+      
+      <exceptionAggregationMetadata/>
+    </measure>
+  </calculatedMeasures>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+    
+  
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="-22" y="295"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Projection_2" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="230" y="295"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="106" y="197"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Projection_1" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="201"/>
+    </shape>
+    <shape modelObjectName="Projection_2" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="201"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

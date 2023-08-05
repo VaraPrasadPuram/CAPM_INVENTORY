@@ -1,0 +1,9 @@
+VIEW VIEW_TOP3_STOCKS_PRDOCUTCATEGORY AS
+SELECT ProductCategory,STOCK FROM 
+(SELECT 
+	ProductCategory,
+	SUM(TO_INT(Stock)) as STOCK
+FROM "MY_INVENTORY_PRODUCTS_INVENTORY"
+GROUP BY 
+ProductCategory) as a
+order by STOCK DESC limit 1; 

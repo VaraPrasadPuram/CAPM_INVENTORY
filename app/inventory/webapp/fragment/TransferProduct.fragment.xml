@@ -1,0 +1,23 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:l="sap.ui.layout" 
+  xmlns:core="sap.ui.core">
+	<Popover title="Transfer Products" class="sapUiContentPadding" placement="Top" initialFocus="email" >
+    <VBox>
+      <Label class="zEP_label" text="To Store" required="true"/>
+
+      	<Select>
+        <items>
+					<core:Item key="Store1" text="Store 1"/>
+          <core:Item key="Store2" text="Store 2"/>
+          <core:Item key="Store3" text="Store 3"/>
+          <core:Item key="Store4" text="Store 4"/>
+          </items>
+				</Select>
+      <Label class="zEP_label" text="Quantity" required="true"/>
+      <Input class="zEP_input" />
+     
+      <Button class="zep_btnLogin" press= "onClickTransfer" text="Transfer"  width="100%"/>
+    </VBox>
+	</Popover>
+</core:FragmentDefinition>

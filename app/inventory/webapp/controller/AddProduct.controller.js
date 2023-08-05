@@ -1,10 +1,11 @@
 sap.ui.define([
-    "sap/ui/core/mvc/Controller"
+    "sap/ui/core/mvc/Controller",
+    'sap/ui/core/Fragment'
 ],
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      */
-    function (Controller) {
+    function (Controller,Fragment) {
         "use strict";
 
         return Controller.extend("com.apple.assign.inventory.controller.AddProduct", {
@@ -21,14 +22,32 @@ sap.ui.define([
                 this.intializeJSONModel();
 
             },
+            onPress: function (oEvent) {
+                var oButton = oEvent.getSource(),
+                    oView = this.getView();
+                // create popover
+                if (!this._pPopover) {
+                    this._pPopover = Fragment.load({
+                        id: oView.getId(),
+                        name: "com.apple.assign.inventory.fragment.popover",
+                        controller: this
+                    }).then(function (oPopover) {
+                        oView.addDependent(oPopover);
+                        oPopover.bindElement("oJLoginuserModel>/User");
+                        return oPopover;
+                    });
+                }
+                this._pPopover.then(function (oPopover) {
+                    oPopover.openBy(oButton);
+                });
+            },
             intializeJSONModel : function(){
                 var prodObject = {
                     ProductId: "",
                     ProductCategory: "",
                     ProductName: "",
                     ProductType: "",
-                    CreatedOn: "",
-                    CreatedBy: "",
+                   
                     UOM: "",
                     Active:true
                     // Inventory:{
@@ -60,7 +79,11 @@ sap.ui.define([
                 this.getOwnerComponent().getRouter().navTo("RouteAddInventory");
             },
             onClickAnlyticDashboard: function(){
-                this.getOwnerComponent().getRouter().navTo("RouteAddInventory");
+                this.getOwnerComponent().getRouter().navTo("RouteTargetAnalytics");
+            },
+            onClickHome: function () {
+                
+                this.getOwnerComponent().getRouter().navTo("RouteProducts");
             },
 
 

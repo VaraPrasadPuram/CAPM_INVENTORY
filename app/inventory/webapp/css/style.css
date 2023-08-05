@@ -1,4 +1,4 @@
-.zEP_headerToolbar {
+ /* .zEP_headerToolbar {
     background-color: cornsilk;
     border-bottom: none;
 }
@@ -20,4 +20,398 @@
 }
 .zEP_pageContent{
     border-bottom: none;
+}  */
+
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+/* Custom CSS Start */
+body,
+.sapUiBodyBackground,
+.sapUiBody,
+.sapMPanelHdr,
+.sapMText,
+.sapMInputBaseInner,
+.sapMLnk {
+    font-family: "SF Pro Text", -apple-system, sans-serif !important;
+    font-weight: 400;
+    font-size: 14px;
+    margin: 0px;
+    padding: 0px;
+    color: #333;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -moz-font-feature-settings: 'liga', 'kern';
+}
+.sapMTitle, .sapMLabel, .sapMBtnContent, .sapMFT, .ui5-card-header .ui5-card-header-text .ui5-card-header-title, .ui5-card-header-subtitle{
+font-family: "SF Pro Text", -apple-system, sans-serif !important;
+}
+.sapUiGlobalBackgroundColor, .sapMShellGlobalInnerBackground{
+    background-color:#ffffff;
+}
+/* btn */
+.sapMBtn{
+    padding: 0 !important;
+}
+.sapMBtn .sapMBtnInner{
+    height: 2rem;
+    background: #e8e8ed;
+    border: none !important;
+    padding: 0 1rem !important;
+    border-radius: 4px;
+}
+.sapMBtn .sapMBtnInner .sapMBtnContent{
+    color: #000;
+    line-height: 2rem;
+}
+.sapContrast.sapMBtnInner, .sapContrast .sapMBtnInner{
+    text-shadow: none;
+}
+:not(.sapMBtnDisabled)>.sapMBtnInner.sapMBtnActive {
+    background-color: #e8e8ed;
+    border-color: #e8e8ed;
+}
+/* bth primary */
+.zEP_primary.sapMBtn .sapMBtnInner{
+    background: #0077ED !important;
+}
+.zEP_primary.sapMBtn .sapMBtnInner .sapMBtnContent{
+    color: #fff;
+}
+/* table */
+.sapUiTableCnt{
+    border: none !important;
+}
+.sapUiTableCCnt{
+    border-top: 1px solid #000;
+}
+.sapUiTableCell{
+    border-right: none;
+}
+.sapUiTableHeaderRow , .sapUiTableVSbHeader{
+    background-color: #fff;
+}
+/* panel */
+.sapMPanelContent, .sapMPanelContent:not(.sapMPanelBGTransparent){
+    border-bottom: none;
+}
+/* popover */
+.sapMPopover{
+    min-width: 24rem;
+}
+.sapMPopover .sapMPopoverHeader .sapMBar, .sapMPopover .sapMPopoverHeader .sapMBarPH{
+height: 3rem;
+}
+.sapMPopoverHeader .sapMBarMiddle>.sapMBarPH{
+    justify-content: flex-start;
+}
+.sapMPopover .sapMPopoverHeader .sapMTitle{
+    color: #000;
+    font-size: 20px;
+    padding-left: 0.5rem;
+}
+html.sap-desktop .sapContrast .sapMIBar.sapMFooter-CTX, html.sap-desktop .sapContrast.sapMIBar.sapMFooter-CTX{
+    background: #fafafa;
+    border-top: 1px solid #e5e5e5;
+}
+/* form */
+.sapUiSizeCompact .sapUiFormContainerTitle>.sapUiFormTitle {
+    height: 0;
+    line-height: 0;
+}
+.sapUiFormResGridCont {
+    padding-bottom: 0rem;
+}
+.zEP_link{
+color:#0071E3 !important;
+text-decoration: none !important;
+}
+.zEP_label{
+    color:#333;
+    font-size: 15px;
+}
+.zEP_input.sapMInputBase{
+    height:2rem;   
+}
+.zEP_input .sapMInputBaseContentWrapper{
+height:2rem;
+border-radius: 4px;
+border: 1px solid #D4D4D4;
+}
+.sapMPopover .zEP_input.sapMInputBase{
+    margin-bottom: 1rem;
+    }
+    /* panel */
+    .zEP_panel .sapMPanelContent{
+padding:0;
+border-bottom: none;
+    }
+/* Login Page */
+.zEP_loginPage{
+    height:100vh !important;
+}
+.zEP_loginPage .sapMPanelContent{
+    height:100vh !important;
+border-bottom: none;
+padding: 0;;
+}
+.zEP_loginImg{
+    width:100%;
+}
+.zEP_rightSide , .zEP_leftSide{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+}
+.zEP_leftSide{
+   
+    background-color: #D8D8D8;
+}
+.zEP_rightSide{
+    background-color: #fff;
+}
+.zEP_loginBox{
+    height:100vh;
+}
+.zEP_wiproLogo{
+    width: 10rem;
+}
+.zEP_helloTxt{
+    font-size: 2rem;
+    font-weight: 300;
+    margin: 1rem;
+    color:#000;
+}
+.zEP_loginTitle{
+    font-size: 2rem;
+    font-weight: 300;
+    margin-bottom: 2rem;
+    color:#DE7E00;
+}
+.zEP_recPass{
+    margin: 0 !important;
+    float: right;
+    font-size: 16px;
+}
+.zEP_loginForm{
+    min-width: 25rem;
+}
+.zep_btnLogin{
+    height: 2.25rem !important;
+    padding: 0 !important;
+}
+.zep_btnLogin .sapMBtnInner, .zep_btnLogin:hover .sapMBtnInner{
+    background: #0071E3;
+    border: 1px solid #0071E3 !important;
+    height: 2.25rem;
+    line-height: 41px;
+    border-radius: 4px;
+}
+.zep_btnLogin .sapMBtnContent{
+    line-height: 2.2rem !important;
+    color: #fff !important;
+    font-size: 16px;
+}
+.zEP_signUp{
+    color: #000;
+    font-size: 16px;
+}
+.zEP_padR5{
+    padding-right: 5px;
+}
+.zEP_popover{
+    min-width: 25rem;
+}
+.zEP_newUser{
+    position: absolute;
+    bottom: 1rem;
+}
+/* container */
+.zEP_container{
+    width: 95%;
+    margin: 0 auto;
+}
+.zEP_container > .sapMFlexItemAlignAuto.sapMFlexItem{
+width: 100%;
+}
+/* header */
+.zEP_headerTop{
+    /* position: fixed; */
+    width: 100%;top: 0rem;z-index: 15;
+}
+.zEP_headerTop .sapMPanelContent{
+    margin: 0 !important;
+    background: #000000 url("../images/banner.png") no-repeat right center;
+    height:8rem !important;
+    padding: 1rem 0;
+}
+.zEP_titleBar{
+    height:100% !important;
+    border-bottom: none;
+}
+.zEP_title{
+    color: #fff;
+    text-shadow: none;
+    font-size: 28px;
+}
+.zEP_subTitle{
+    color: #fff;
+    text-shadow: none;
+}
+.zEP_actionBtns .sapMPanelContent{
+    padding: 5px;
+    border: 1px solid #e5e5e5;
+    margin-bottom:1rem;
+    /* background: #fafafa; */
+}
+.zEP_actionBtns .sapMPanelContent .sapMIBar{
+    border-bottom: none;
+    width: 95%;
+    padding: 0;
+    margin: 0 auto;
+}
+.zEP_profilePop{
+min-width: 18rem;
+}
+.zEP_dashboard{
+    padding: 0;
+    margin: 0 auto;
+    width: 100% !important;
+}
+.zEP_dashboard li{
+     width:100%;
+    list-style: none;
+   
+
+}
+.zEP_dashboard .sapVizFrame{
+    width:100% !important; 
+}
+.zEP_dashboardA li{
+    width:100%;
+    list-style: none;
+    margin:1rem;
+    padding: 1rem;
+    border: 1px solid #dbdbdb;
+    border-radius: 10px;
+    -webkit-box-shadow: 6px 6px 17px -15px rgba(0,0,0,0.75);
+    -moz-box-shadow: 6px 6px 17px -15px rgba(0,0,0,0.75);
+    box-shadow: 6px 6px 17px -15px rgba(0,0,0,0.75);
+}
+.zEP_chartPanel .sapMPanelContent{
+    padding: 1rem;
+    border: 1px solid #dbdbdb;
+    border-radius: 10px;
+    -webkit-box-shadow: 6px 6px 17px -15px rgba(0,0,0,0.75);
+    -moz-box-shadow: 6px 6px 17px -15px rgba(0,0,0,0.75);
+    box-shadow: 6px 6px 17px -15px rgba(0,0,0,0.75);
+}
+
+.zEP_formBox{
+    border: 1px solid #e5e5e5;
+    margin: 2rem 0;
+    border-radius: 4px;
+}
+.zEP_formBox .sapMIBar{
+    height:3rem;
+    border-bottom: 1px solid #e5e5e5;
+}
+.zEP_pullRight{
+    justify-content: end;
+}
+.sapMMsgStrip .sapMBtnInner{
+    background: none;
+    display: flex;
+    align-items: center;
+}
+.sapMMsgStrip .sapMBtnInner .sapUiIcon{
+color:#000000;
+}
+.zEP_titleMain{
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+.zEP_squareTab .sapMSegBBtn.sapMSegBBtnSel .sapMSegBBtnInner {
+    background: #e8e8e8 !important;
+    color: #fff;
+    border-color: #d4d4d4 !important;
+}
+.zEP_squareTab.sapMSegB .sapMSegBBtn .sapMSegBBtnInner{
+    color: #000;
+}
+.zEP_chartTop{
+    border-bottom: none;
+    padding: 0 1rem;
+}
+.zEP_cardsSec{
+    display: flex;
+    align-items: center;
+    width: 30%;
+}
+.zEP_cards{
+    width: 350px;
+    border: 1px solid #dbdbdb;
+    border-radius: 6px;
+    border-bottom-width: 4px;
+    margin-bottom: 2rem;
+    
+}
+ .ui5-card-header-title{
+    font-size: 18px !important;
+    font-weight: 300 !important;
+}
+.zEP_btnTable .sapMBtnInner{
+    height: 1.6rem !important;
+}
+.zEP_btnTable .sapMBtnInner .sapMBtnContent {
+    line-height: 1.6rem;
+}
+::-webkit-scrollbar-track
+{
+	
+	border-radius: 10px;
+	background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar
+{
+	width: 12px;
+	background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	background-color: #555;
+}
+.transferIcon{
+    min-width:0
+}
+.transferIcon .sapMBtnInner {
+    min-width:0;
+    background-color: transparent !important;
+    padding: 0;
+}
+.transferIcon .sapMBtnCustomIcon{
+    color:#0071e3 !important
+}
+
+.mainTitleBar{
+    background: #333;
+}
+
+.mainTitleBar .zEP_title{
+    font-size: 16px;
+}
+.zEP_cards123{
+    /* border: 10px solid #000; */
+}
+.zEP_cardIcon{
+    font-size: 20px;
 }

@@ -1,31 +1,18 @@
-<mvc:View controllerName="com.apple.assign.inventory.controller.Login" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+<mvc:View controllerName="com.apple.assign.inventory.controller.Login" 
+xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m"
+ xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
     <Page id="page" title="{i18n>title}" showHeader="false">
-        <Panel class="zEP_headerToolbar">
-            <Toolbar class="zEP_toolbarNoBdr">
-                <Image id="idnotifaction" width="4rem" class="zEP_iconNotification" src="images/Wipro_logo_PNG2.png" />
-                <ToolbarSpacer />
-                <Title text="{i18n>title}" class="zEP_titleTxt" />
-                <ToolbarSpacer />
-            </Toolbar>
-        </Panel>
         <content>
-            <Panel class="zEP_pageContent">
-                <!-- <VBox class="zVB_login" fitContainer="true" justifyContent="Center" alignItems="Center" alignContent="Center"> -->
-                    <!-- <HBox>
-                            <Text text="Login Page"></Text>
-                        </HBox>
-                        <HBox>
-                            <Label text="User Name" required="true"></Label>
-                            <Input id="sIdUserName"/>
-                        </HBox>
-                        <HBox >
-                            <Label text="Password" required="true"></Label>
-                            <Input id="sIdPwde" type="Password" placeholder="Enter password"/>
-                        </HBox>
-                        <Button text="Login" press="fnSubmitFunction"></Button>  -->
-
-                    <VBox class="zVB_login" fitContainer="true" justifyContent="Center" alignItems="Center" alignContent="Center">
-                        <f:SimpleForm
+            <Panel class="zEP_loginPage">
+<HBox class="zEP_loginBox">
+                <VBox class="zEP_leftSide">
+                    <Image class="zEP_loginImg" src="images/loginpage.png"></Image>
+                </VBox>
+                <VBox class="zEP_rightSide" fitContainer="true" justifyContent="Center" alignItems="Center" alignContent="Center">
+                    <Image src="images/wiprologo.png" class="zEP_wiproLogo"></Image>
+                    <Title class="zEP_helloTxt" text="Hello Again!!!"></Title>
+                    <Title class="zEP_loginTitle" text="Inventory Management System"></Title>
+                        <f:SimpleForm class="zEP_loginForm"
                             id="SimpleFormChange354"
                             editable="true"
                             layout="ResponsiveGridLayout"
@@ -44,17 +31,21 @@
                             singleContainerFullSize="false"
                         >
                             <f:content>
-                                <Label text="User Name" required="true" />
-                                <Input id="sIdUserName" />
-                                <Label text="Password" required="true" />
-                                <Input id="sIdPwde" type="Password" placeholder="Enter password" />
-
+                                <Label class="zEP_label" text="Username" required="true" />
+                                <Input class="zEP_input" id="sIdUserName" />
+                                <Label class="zEP_label" text="Password" required="true" />
+                                <Input class="zEP_input" id="sIdPwde" type="Password" />
                                 <Label text="" />
-                                <Button text="Login" press="fnSubmitFunction" />
+                                <Link class="zEP_link zEP_recPass" text="Recovery Password" press="onClickForgotPassword"/>
+                                <Label text="" />
+                                <Button class="zep_btnLogin" text="Login" press="fnSubmitFunction" />
                             </f:content>
                         </f:SimpleForm>
+                        <HBox class="zEP_newUser">
+                        <Label class="zEP_signUp zEP_padR5" text="Dont have an account Yet?"></Label> <Link class="zEP_link zEP_recPass" text="Sign Up" press="onAdduser"></Link>
+                        </HBox>
                     </VBox>
-                
+                </HBox>
             </Panel>
         </content>
     </Page>

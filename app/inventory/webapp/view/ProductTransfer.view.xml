@@ -1,0 +1,98 @@
+<core:View controllerName="com.apple.assign.inventory.controller.ProductTransfer" width="100%"
+    xmlns:core="sap.ui.core"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:customData="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+    xmlns:u="sap.ui.unified"
+    xmlns:l="sap.ui.layout"
+    xmlns="sap.m"
+    xmlns:ui="sap.ui.table"
+    xmlns:charts="sap.viz.ui5"
+    xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
+    xmlns:viz="sap.viz.ui5.controls"
+    xmlns:viz.data="sap.viz.ui5.data">
+    <Page id="Eventsedit" navButtonPress="onNavBack" showNavButton="false" showHeader="false" class="zEP_summaryReport">
+       <Panel class="zEP_headerTop">
+            <Toolbar class="zEP_titleBar zEP_container">
+                <VBox>
+                <Title text="Welcome to IMS" class="zEP_title" />
+                 <Title text="Process of sourcing, storing and overseeing a company's inventory" class="zEP_subTitle" />
+                </VBox>
+                <ToolbarSpacer />
+                	<Avatar src="{oJLoginuserModel>/User/ImageURL}" displaySize="S" backgroundColor="Transparent" press="onPress"/>
+            </Toolbar>
+        </Panel>
+
+        <Panel class="zEP_actionBtns">
+        <Toolbar class="zEP_toolbarNoBdr">
+            <ToolbarSpacer />
+             <Button text="{i18n>Home}" press="onClickHome" />
+            <Button text="{i18n>addProdMaster}" press="onClickAddProdMaster" />
+                      <Button text="{i18n>addProdInventory}" press="onClickAddProdInventory" />
+                       <Button text="{i18n>anlyticDashboard}" press="onClickAnlyticDashboard" />
+        </Toolbar>
+        </Panel>
+         
+        <content>
+          <HBox  class="zEP_container">
+            <Panel class="zEP_panel zEP_editEventTable zEP_DetailReportTable">
+           
+
+                <ui:Table id="idEventDetailReportTable" rowHeight="40px" fixedColumnCount="0"  rows="{oJProductsModel>/Products}" visible="true" selectionMode="None"  filter="onAfterReportColumnFilter">
+                    <ui:columns>
+                        <ui:Column  sortProperty="ProductId" filterProperty="ProductId">
+                            <Text text="Product ID" class="{}"></Text>
+                            <ui:template>
+                                <Text text="{oJProductsModel>ProductId}">
+                                </Text>
+                            </ui:template>
+                        </ui:Column>
+                        <ui:Column  sortProperty="ProductName" filterProperty="ProductName">
+                            <Text text="Product Name"></Text>
+                            <ui:template>
+                                <Text text="{oJProductsModel>ProductName}">
+                                </Text>
+                            </ui:template>
+                        </ui:Column>
+                         <ui:Column  sortProperty="ProductCategory" filterProperty="ProductCategory">
+                            <Text text="Product Category"></Text>
+                            <ui:template>
+                                <Text text="{oJProductsModel>ProductCategory}">
+                                </Text>
+                            </ui:template>
+                        </ui:Column>
+                         <ui:Column  sortProperty="Stock" filterProperty="Stock">
+                            <Text text="Stcok Transfered"></Text>
+                            <ui:template>
+                                <Text text="{oJProductsModel>Stock}">
+                                </Text>
+                            </ui:template>
+                        </ui:Column>
+                         <ui:Column  sortProperty="StoredId" filterProperty="StoredId">
+                            <Text text="Store ID"></Text>
+                            <ui:template>
+                                <Text text="{oJProductsModel>StoredId}">
+                                </Text>
+                            </ui:template>
+                        </ui:Column>
+                         <ui:Column  sortProperty="TransferBy" filterProperty="TransferBy">
+                            <Text text="Transfer By"></Text>
+                            <ui:template>
+                                <Text text="{oJProductsModel>TransferBy}">
+                                </Text>
+                            </ui:template>
+                        </ui:Column>
+                        <ui:Column  sortProperty="UOM" filterProperty="UOM">
+                            <Text text="Unit of Measure"></Text>
+                            <ui:template>
+                                <Text text="{oJProductsModel>UOM}">
+                                </Text>
+                            </ui:template>
+                        </ui:Column>
+                        
+                    </ui:columns>
+                </ui:Table>
+            </Panel>
+               </HBox>
+        </content>
+    </Page>
+</core:View>

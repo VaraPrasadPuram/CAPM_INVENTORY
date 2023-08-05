@@ -4,18 +4,62 @@
   "description": "Security profile of called application",
   "scopes": [
     {
-      "name": "uaa.user",
-      "description": "UAA"
-    }
-  ],
-  "role-templates": [
-    {
-      "name": "Token_Exchange",
-      "description": "UAA",
-      "scope-references": [
-        "uaa.user"
-      ]
-    }
-  ],
-  "attributes": []
+      "name": "$XSAPPNAME.Admin",
+      "description": "Administrator"
+  },
+  {
+    "name": "$XSAPPNAME.Viewer",
+    "description": "Viewer"
 }
+  ],
+  "attributes": [
+      {
+        "name": "ProductCategory",
+        "description": "ProductCategory",
+        "valueType": "string"
+            }
+    ],
+    "role-templates": [
+         {
+          "name": "Viewer",
+          "description": "Viewer",
+          "attribute-references": [
+            {
+            "name": "ProductCategory"
+            }
+          ],
+    "scope-references": [
+          "$XSAPPNAME.Viewer"
+                ]
+              },
+     {
+   "name": "Admin",
+  "description": "Administrator",
+   "scope-references": [
+    "$XSAPPNAME.Admin"
+                    ]
+                  }
+                ],            
+    "role-collections": [
+        {
+       "name": "app_Administrator",
+       "description": "Administrator Access",
+       "role-template-references": [
+         "$XSAPPNAME.Admin"
+           ]
+                  }
+              ],
+ "oauth2-configuration": {
+"credential-types": [
+  "binding-secret",
+ "x509"
+ ],
+"redirect-uris": [
+"https://*.applicationstudio.cloud.sap/**",
+"https://*.hana.ondemand.com/**",
+"https://hxehost:*/**",
+ "http://localhost:*/**"
+                  ]                    
+              } 
+              }
+              

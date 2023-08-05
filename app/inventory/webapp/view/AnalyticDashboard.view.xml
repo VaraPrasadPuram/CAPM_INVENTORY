@@ -1,0 +1,128 @@
+<core:View
+    controllerName="com.apple.assign.inventory.controller.AnalyticDashboard"
+    width="100%"
+    xmlns:core="sap.ui.core"
+    xmlns:l="sap.ui.layout"
+    xmlns="sap.m"
+    xmlns:viz="sap.viz.ui5.controls"
+    xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
+    xmlns:viz.data="sap.viz.ui5.data"
+>
+    <Page id="Eventsedit" navButtonPress="onNavBack" showNavButton="false" showHeader="false" class="zEP_summaryReport">
+         <Panel class="zEP_headerTop">
+            <Toolbar class="zEP_titleBar zEP_container">
+                <VBox>
+                <Title text="Welcome to IMS" class="zEP_title" />
+                 <Title text="Process of sourcing, storing and overseeing a company's inventory" class="zEP_subTitle" />
+                </VBox>
+                <ToolbarSpacer />
+                	<Avatar src="{oJLoginuserModel>/User/ImageURL}" displaySize="S" backgroundColor="Transparent" press="onPress"/>
+            </Toolbar>
+        </Panel>
+
+       <Panel class="zEP_actionBtns">
+        <Toolbar class="zEP_toolbarNoBdr">
+            <ToolbarSpacer />
+                         <Button text="{i18n>Home}" press="onClickHome" />
+            <Button text="{i18n>addProdMaster}" press="onClickAddProdMaster" />
+            <Button text="{i18n>addProdInventory}" press="onClickAddProdInventory" />
+            
+        </Toolbar>
+        </Panel>
+        <content>
+         <HBox  class="zEP_container">
+            <Panel class="zEP_panel zEP_editEventTable zEP_DetailReportTable">
+            <VBox>
+              	
+                <viz:VizFrame width= "100%" id="idVizFrame" uiConfig="{applicationSet:'fiori'}" vizType='column' legendVisible="true"
+                 vizProperties="{plotArea: { drawingEffect: 'glossy' },title:{ text:'Bar Chart'}}">
+                    <viz:dataset>
+                        <viz.data:FlattenedDataset data="{oJProductsModel>/products}">
+                            <viz.data:dimensions>
+                                <viz.data:DimensionDefinition name="Product Name" value="{PRODUCTNAME}" />
+                            </viz.data:dimensions>
+                            <viz.data:measures>
+                                <viz.data:MeasureDefinition group="1" name="Stocks" value="{CC_STOCK}" />
+                                <viz.data:MeasureDefinition group="1" name="NetQty" value="{CC_QTY}" />
+                            </viz.data:measures>
+                        </viz.data:FlattenedDataset>
+                    </viz:dataset>
+                    <viz:feeds>
+                        <viz.feeds:FeedItem  uid="primaryValues" type="Measure" values="Stocks" />
+                        <viz.feeds:FeedItem  uid="primaryValues" type="Measure" values="NetQty" />
+                        <viz.feeds:FeedItem uid="categoryAxis" type="Dimension" values="Product Name" />
+                    </viz:feeds>
+                </viz:VizFrame>
+                <viz:VizFrame id="oVizFrame" busy="false" busyIndicatorDelay="1000" visible="false" uiConfig="{ 'applicationSet': 'fiori' }" vizType="pie" legendVisible="true"
+                 vizProperties="{plotArea: { drawingEffect: 'glossy' },title:{ text:'Pie Chart'}}">
+                    <viz:dataset>
+                        <viz.data:FlattenedDataset data="{oJProductsModel>/products}">
+                            <viz.data:dimensions>
+                                <viz.data:DimensionDefinition name="Product Name" value="{PRODUCTNAME}" />
+                            </viz.data:dimensions>
+                            <viz.data:measures>
+                                <viz.data:MeasureDefinition group="1" name="Stocks" value="{CC_STOCK}" />
+                            </viz.data:measures>
+                        </viz.data:FlattenedDataset>
+                    </viz:dataset>
+                    <viz:feeds>
+                        <viz.feeds:FeedItem uid="size" type="Measure" values="Stocks" />
+                        <viz.feeds:FeedItem uid="color" type="Dimension" values="Product Name" />
+                    </viz:feeds>
+                </viz:VizFrame>
+                
+               <Panel>	
+        
+  
+                   
+                 <viz:VizFrame id="idLineChart" width= "100%" busy="false" busyIndicatorDelay="1000" visible="true" uiConfig="{ 'applicationSet': 'fiori' }" vizType="line" legendVisible="true"
+               vizProperties="{plotArea: { drawingEffect: 'glossy' },title:{ text:'Line Chart'}}" >
+                    <viz:dataset>
+                        <viz.data:FlattenedDataset data="{oJProductsModel>/products}">
+                            <viz.data:dimensions>
+                                <viz.data:DimensionDefinition name="Product Category" value="{PRODUCTCATEGORY}" />
+                            </viz.data:dimensions>
+                            <viz.data:measures>
+                                <viz.data:MeasureDefinition group="1" name="Stocks" value="{CC_STOCK}" />
+                                <viz.data:MeasureDefinition group="1" name="NetQty" value="{CC_QTY}" />
+                            </viz.data:measures>
+                        </viz.data:FlattenedDataset>
+                    </viz:dataset>
+                    <viz:feeds>
+                        <viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Stocks" />
+                         <viz.feeds:FeedItem uid="valueAxis" type="Measure" values="NetQty" />
+                        <viz.feeds:FeedItem uid="categoryAxis" type="Dimension" values="Product Category" />
+                    </viz:feeds>
+                </viz:VizFrame>
+                 </Panel>
+                    <FlexBox
+				class="zEP_dashboardA ne-flexbox2"
+				renderType="List"
+				alignItems="Center">
+                 <viz:VizFrame id="idColumnChart" busy="false" busyIndicatorDelay="1000" visible="false" uiConfig="{ 'applicationSet': 'fiori' }" vizType="column" legendVisible="true"
+               vizProperties="{plotArea: { drawingEffect: 'glossy' },title:{ text:'Column Chart'}}" >
+                    <viz:dataset>
+                        <viz.data:FlattenedDataset data="{oJProductsModel>/products}">
+                            <viz.data:dimensions>
+                                <viz.data:DimensionDefinition name="Product Name" value="{PRODUCTNAME}" />
+                            </viz.data:dimensions>
+                            <viz.data:measures>
+                                <viz.data:MeasureDefinition group="1" name="Stocks" value="{CC_STOCK}" />
+                                <viz.data:MeasureDefinition group="1" name="NetQty" value="{CC_QTY}" />
+                            </viz.data:measures>
+                        </viz.data:FlattenedDataset>
+                    </viz:dataset>
+                    <viz:feeds>
+                         <viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Stocks" />
+                         <viz.feeds:FeedItem uid="valueAxis" type="Measure" values="NetQty" />
+                        <viz.feeds:FeedItem uid="categoryAxis" type="Dimension" values="Product Name" />
+                    </viz:feeds>
+                </viz:VizFrame>
+                 </FlexBox>
+                </VBox>
+               
+            </Panel>
+                </HBox>
+        </content>
+    </Page>
+</core:View>

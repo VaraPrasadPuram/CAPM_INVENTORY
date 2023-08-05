@@ -1,11 +1,11 @@
 const cds = require('@sap/cds')
 const req = require('express/lib/request')
 const colors =require("colors")
-module.exports = cds.service.impl(function () {
+module.exports = cds.service.impl(async (srv) => {
 
- const { Users , Products,ProductsInventory} = this.entities
+ const { Users , Products,ProductsInventory,Products_Transfer} = srv.entities
 
-    this.on('sleep', async () => {
+    srv.on('sleep', async () => {
     try {
         let dbQuery = ' Call "sleep"( )'
         let result = await cds.run(dbQuery, { })
@@ -17,19 +17,90 @@ module.exports = cds.service.impl(function () {
     }
     })
 
-    this.before(['READ'] , Users, async(po, req) => {
-      console.log("<<Hello I am in ON Handler")
-      console.log("<<<insert bp", Users);
-   })
-this.on('CREATE' , 'Products', async(req) => {
-    console.log("<<Hello I am in ON Handler")
-    const createProduct = req.data;
-    const bp = await cds.run(INSERT.into(Products).entries(createProduct));
-    console.log("<<<insert bp", Products);
-     return bp;
- })
+    srv.before(['CREATE'] , Users, async(req,res) => {
+        console.log("Control inside before event phase")
+        var message = '';
+        console.log('Username Check:' +JSON.stringify(req.data.Username));
+            if(req.data.Username === null){
+                message = message + 'Username cant be null';               
+            }
+            if(req.data.Password.length < 8){
+                message = message + ' and password cannot be less than 6';
+            }    
+    return req.error(400, message)
+    })
 
- this.on('CREATE' , 'ProductsInventory', async(req) => {
+    srv.after(['READ'] , Users, async(req) => {
+        console.log("Control inside after event phase")
+        //console.log("<<<insert bp", Users);
+     })
+
+    //    srv.before("error", (err, req) => {
+    //            switch (err.message) {
+    //              case "UNIQUE_CONSTRAINT_VIOLATION":
+    //                err.message = "The entry already exists.";
+    //                break;
+           
+    //              default:
+    //                err.message =
+    //                  "An error occured. Please retry. Technical error message: " +
+    //                  err.message;
+    //                break;
+    //            }
+    //         })
+
+    // srv.on(['READ'] , Users, async(req) => {
+    //     console.log("Control inside on event phase")
+    //     //console.log("<<<insert bp", Users);
+    //   })
+
+//     srv.on('CREATE' , 'Products', async(req) => {
+//         console.log("<<Hello I am inside on Event phase")
+//         const createProduct = req.data;
+//         const bp = await cds.run(INSERT.into(Products).entries(createProduct));
+//         console.log("<<<insert bp", Products);
+//      return bp;
+//  })
+//  srv.on('CREATE' , 'Products_Transfer', async(req) => {
+//     console.log("<<Hello I am in ON Handler")
+//     const createProductTransfer = req.data;
+//     const bp = await cds.run(INSERT.into(Products_Transfer).entries(createProductTransfer));
+//     console.log("<<<insert bp", Products_Transfer);
+//      return bp;
+//  })
+ 
+
+//  this.on('CREATE' , 'Users', async(req) => {
+//     console.log("<<Hello I am in ON Handler")
+//     const users = req.data;
+//     const bp = await cds.run(INSERT.into(Users).entries(users));
+//     console.log("<<<insert bp", users);
+//      return bp;
+//     })
+ 
+
+srv.before('UPDATE', async(req)=>{
+    console.log("This is update call for Users")
+    //const updateUser =req.data;
+    // const Username =updateUser.Username;
+    // const EmailId =updateUser.EmailId;
+    //const password =updateUser.Password;
+
+    const user_data = await SELECT `EmailId` .from(Users).where({EmailId:req.data.EmailId});;
+
+    if(user_data[0].EmailId!= req.data.EmailId)
+{
+    return req.reject (400, 'EmailID doesnt exists!..You cant able to chamge the password');
+}
+else
+{
+ UPDATE(Users).with({Password:req.data.Password}).where({EmailId: req.data.EmailId}) // Updated the net stock on our Product entity
+     
+}
+})
+
+
+ srv.on('CREATE' , 'ProductsInventory', async(req) => {
     console.log("<<Hello I am in ON Handler")
     const createProduct = req.data;
     console.log(req.data);
@@ -40,8 +111,28 @@ this.on('CREATE' , 'Products', async(req) => {
 
 
 
-    //  fetch the data and show the resp
+ srv.after('CREATE', 'Products_Transfer', async (Products_Transfer, req) => {
+    const { ProductsInventory } = srv.entities;
+    const { ProductId,ProductName,Stock } = Products_Transfer;
+
+    const invStock = await SELECT.one('Stock')
+        .from(ProductsInventory)
+        .where({ ProductId, ProductName});
+
+    const currentStock = invStock.Stock || 0;
+    const updatedStock = currentStock - Stock;
+
+    await UPDATE(ProductsInventory)
+        .set({ Stock: updatedStock.toString() })
+        .where({ ProductId, ProductName });
+
+    console.log('Stock updated:', updatedStock);
+});
+
 }) 
+
+    //  fetch the data and show the resp
+
 
 
     

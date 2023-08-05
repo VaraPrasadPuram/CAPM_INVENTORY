@@ -1,0 +1,22 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:l="sap.ui.layout" 
+  xmlns:core="sap.ui.core">
+	<Popover
+		title="Login"
+		class="sapUiContentPadding"
+		placement="Top"
+			initialFocus="email">
+    <VBox>
+<Label class="zEP_label" text="User Name"/>
+      <Input class="zEP_input"  value="{oJLoginuserModel>/NewUser/Username}"/>
+<Label class="zEP_label" text="Password"/>
+      <Input class="zEP_input" type="Password" value="{oJLoginuserModel>Password}"/>
+      <Label text="Email"/>
+      <Input class="zEP_input" value="{oJLoginuserModel>EmailId}"/>
+<Label class="zEP_label" text="Image URL"/>
+      <Input class="zEP_input" value="{oJLoginuserModel>ImageURL}"/>
+      <Button class="zep_btnLogin" press="AddNewUser" text="Sign UP" width="100%"/>
+    </VBox>
+	</Popover>
+</core:FragmentDefinition>

@@ -9,11 +9,12 @@
     "@sap/cds": "^6",
     "@sap/cds-odata-v2-adapter-proxy": "^1.9.19",
     "@sap/hdbext": "^7.7.2",
-    "@sap/xssec": "^3",
+    "@sap/xsenv": "^3.4.0",
+    "@sap/xssec": "^3.2.17",
     "colors": "^1.4.0",
     "express": "^4",
     "hdb": "^0.19.0",
-    "passport": "^0",
+    "passport": "^0.6.0",
     "sap-hdbext-promisfied": "^2.202301.1"
   },
   "scripts": {
@@ -55,11 +56,36 @@
       "deploy-format": "hdbtable"
     },
     "requires": {
-      "db": {
-        "kind": "hana"
-      },
+      "uaa":{
+        "kind":"xsuaa"
+        },
       "auth": {
-        "kind": "xsuaa"
+        "[production]":{
+          "strategy":"JWT"
+        },
+        "[development]":{
+          "strategy":"mock",
+          "users": {
+            "Varaprasad": {
+              "roles": ["Admin","Viewer"],
+              "userAttributes": { 
+                "ProductCategory":[
+                  "$UNRESTRICTED" 
+                ]  
+
+              }
+            },
+            "Kotesh":{
+              "roles": ["Viewer"],
+              "userAttributes": { 
+                "ProductCategory":["Electronics"]
+              }
+            }
+          }
+        }
+      },
+     "db": {
+        "kind": "hana"
       },
       "approuter": {
         "kind": "cloudfoundry"

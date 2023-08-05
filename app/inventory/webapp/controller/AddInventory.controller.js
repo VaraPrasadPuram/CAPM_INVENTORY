@@ -1,10 +1,11 @@
 sap.ui.define([
-    "sap/ui/core/mvc/Controller"
+    "sap/ui/core/mvc/Controller",
+    'sap/ui/core/Fragment'
 ],
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      */
-    function (Controller) {
+    function (Controller,Fragment) {
         "use strict";
 
         return Controller.extend("com.apple.assign.inventory.controller.AddInventory", {
@@ -18,9 +19,61 @@ sap.ui.define([
                     //     },
                     //     error: function (oError) { debugger; }
                     // });
+                    var that = this;
+                    this.getOwnerComponent().getModel().read("/Products", {
     
+                        urlParameters: {
+                            "$expand": "Inventory",
+                        },
+    
+    
+                        success: function (oCompleteEntry) {
+    
+                            var oJProductsModel = new sap.ui.model.json.JSONModel({ 'Products': oCompleteEntry.results });
+                            that.getView().setModel(oJProductsModel, "oJProductsModel");
+                        },
+                        error: function (oError) { debugger; }
+                    });
                    this.intializeJSONModel();
     
+                },
+                onproductselect: function (oEvent) {
+                    debugger
+
+                    var obj = oEvent.getSource().getSelectedItem().getBindingContext("oJProductsModel").getObject();
+                    var analyticObject = {
+                        ProductId: obj.ProductId,
+                        ProductCategory:obj.ProductCategory,
+                        ProductType: obj.ProductType,
+                        AddedOn: "",
+                        AddedBy: "",
+                        Qty: "",
+                        Stock: "",
+                        UOM: obj.UOM,
+                        ExpireDate: "",
+                        BatchNo: "",
+                    };
+                    var addProdInvetoryModel = new sap.ui.model.json.JSONModel(analyticObject);
+                    this.getView().setModel(addProdInvetoryModel, "addProdInvetoryModel");
+                },
+                onPress: function (oEvent) {
+                    var oButton = oEvent.getSource(),
+                        oView = this.getView();
+                    // create popover
+                    if (!this._pPopover) {
+                        this._pPopover = Fragment.load({
+                            id: oView.getId(),
+                            name: "com.apple.assign.inventory.fragment.popover",
+                            controller: this
+                        }).then(function (oPopover) {
+                            oView.addDependent(oPopover);
+                            oPopover.bindElement("oJLoginuserModel>/User");
+                            return oPopover;
+                        });
+                    }
+                    this._pPopover.then(function (oPopover) {
+                        oPopover.openBy(oButton);
+                    });
                 },
                 intializeJSONModel : function(){
                     var analyticObject = {
@@ -59,7 +112,11 @@ sap.ui.define([
                     this.getOwnerComponent().getRouter().navTo("RouteAddProduct");
                 },
                 onClickAnlyticDashboard: function(){
-                    // this.getOwnerComponent().getRouter().navTo("RouteAnalytics");
+                     this.getOwnerComponent().getRouter().navTo("RouteTargetAnalytics");
+                },
+                onClickHome: function () {
+                
+                    this.getOwnerComponent().getRouter().navTo("RouteProducts");
                 },
     
     

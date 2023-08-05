@@ -1,18 +1,24 @@
 {
+  "welcomeFile": "inventory/webapp",
   "authenticationMethod": "route",
+  "sessionTimeout": 10,
+  "pluginMetadataEndpoint": "/metadata",
   "routes": [
     {
-      "source": "^/app/(.*)$",
+      "source": "^/inventory/webapp(.*)$",
       "target": "$1",
-      "localDir": ".",
+      "localDir": "inventory/webapp",
+      "csrfProtection": false,
       "authenticationType": "xsuaa",
       "cacheControl": "no-cache, no-store, must-revalidate"
     },
     {
-      "source": "^/(.*)$",
+      "source": "^/catalog/(.*)$",
       "target": "$1",
       "destination": "srv-api",
+      "authenticationType": "xsuaa",
       "csrfProtection": true
     }
   ]
 }
+

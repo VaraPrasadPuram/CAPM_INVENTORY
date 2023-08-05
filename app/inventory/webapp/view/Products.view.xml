@@ -6,84 +6,214 @@
     xmlns:l="sap.ui.layout"
     xmlns="sap.m"
     xmlns:ui="sap.ui.table"
-    xmlns:charts="sap.viz.ui5"
-    xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
     xmlns:viz="sap.viz.ui5.controls"
-    xmlns:viz.data="sap.viz.ui5.data">
+    xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
+    xmlns:viz.data="sap.viz.ui5.data"
+    xmlns:card="sap.ui.webc.main">
     <Page id="Eventsedit" navButtonPress="onNavBack" showNavButton="false" showHeader="false" class="zEP_summaryReport">
-     <Panel class="zEP_headerToolbar">
-            <Toolbar class="zEP_toolbarNoBdr">
-                <Image id="idnotifaction" width="4rem" class="zEP_iconNotification" src="images/Wipro_logo_PNG2.png" />
-                <ToolbarSpacer />
-                <Title text="{i18n>title}" class="zEP_titleTxt" />
-                <ToolbarSpacer />
-                	<Avatar
-							displaySize="S"
-							backgroundColor="Transparent"
-							press="onPress"/>
+     <Panel class="zEP_headerTop">
+     
+            <Toolbar class="zEP_titleBar zEP_container">
+               
+                <VBox>
+                <Title text="Welcome to IMS" class="zEP_title" />
+                 <Title text="Process of sourcing, storing and overseeing a company's inventory" class="zEP_subTitle" />
+                </VBox>
+               
             </Toolbar>
         </Panel>
-         <Toolbar class="zEP_toolbarNoBdr">
-               
-                <ToolbarSpacer />
-                <Title text=""  />
+       <Panel class="zEP_actionBtns">
+         <Toolbar>
                 <ToolbarSpacer />
                 	 <Button text="{i18n>addProdMaster}" press="onClickAddProdMaster" />
                       <Button text="{i18n>addProdInventory}" press="onClickAddProdInventory" />
                        <Button text="{i18n>anlyticDashboard}" press="onClickAnlyticDashboard" />
             </Toolbar>
+            </Panel>
         <content>
-            <Panel class="zEP_editEventTable zEP_DetailReportTable">
+         <HBox  class="zEP_container">
+            <Panel class="zEP_panel zEP_editEventTable zEP_DetailReportTable">
             <MessageStrip
 				text="{i18n>successMsg}"
 				type="Success"
 				enableFormattedText="true"
 				showIcon="true"
 				showCloseButton="true"
-				class="sapUiMediumMarginBottom">
+				class="sapUiTinyMarginBottom sapUiTinyMarginTop">
 			</MessageStrip>
 
-                <ui:Table id="idEventDetailReportTable" rowHeight="40px" fixedColumnCount="0"  rows="{oJProductsModel>/Products}" visible="true" selectionMode="None"  filter="onAfterReportColumnFilter">
+            <VBox > 
+            <HBox>
+            <VBox   width="70%"> 
+                <Panel class="zEP_panel zEP_chartPanel"> 
+                   <Toolbar class="zEP_chartTop">
+                    <Title text="Total Sales" class="zEP_titleMain" />
+                <ToolbarSpacer />
+                		<SegmentedButton class="zEP_squareTab" id="SB1" selectionChange="onSelectionChangeSegButton">
+				<items>
+					<SegmentedButtonItem text="YoY" />
+					<SegmentedButtonItem text="MTD" />
+					<SegmentedButtonItem text="WTD" />
+				</items>
+			</SegmentedButton>
+            </Toolbar>
+                  <FlexBox
+				class="zEP_dashboard ne-flexbox2"
+				renderType="List"
+				alignItems="Center">	
+                 <viz:VizFrame id="idColumnChartYoY" busy="false" busyIndicatorDelay="1000" visible="true" uiConfig="{ 'applicationSet': 'fiori' }" vizType="column" legendVisible="true"
+               vizProperties="{plotArea: { drawingEffect: 'glossy' },title:{ text:'Column Chart'}}" >
+                    <viz:dataset>
+                        <viz.data:FlattenedDataset data="{oJChartsProductsModel>/products}">
+                            <viz.data:dimensions>
+                                <viz.data:DimensionDefinition name="Product Category" value="{PRODUCTCATEGORY}" />
+                            </viz.data:dimensions>
+                            <viz.data:measures>
+                                <viz.data:MeasureDefinition group="1" name="Current Year Stocks" value="{STOCK_CURRENT_YEAR}" />
+                                <viz.data:MeasureDefinition group="1" name="Current Year NetQty" value="{QTY_CURRENT_YEAR}" />
+                                  <viz.data:MeasureDefinition group="2" name="Previous Year Stocks" value="{STOCK_PREVIOUS_YEAR}" />
+                                <viz.data:MeasureDefinition group="2" name="Previous Year NetQty" value="{QTY_PREVIOUS_YEAR}" /> 
+                            </viz.data:measures>
+                        </viz.data:FlattenedDataset>
+                    </viz:dataset>
+                    <viz:feeds>
+                          <viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Current Year Stocks" />
+                         <viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Current Year NetQty" />
+                          <viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Previous Year Stocks" />
+                         <viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Previous Year NetQty" /> 
+                        <viz.feeds:FeedItem uid="categoryAxis" type="Dimension" values="Product Category" />
+                    </viz:feeds>
+                </viz:VizFrame>
+
+                 <viz:VizFrame id="idColumnChartMTD" visible="false" busy="false" busyIndicatorDelay="1000" uiConfig="{ 'applicationSet': 'fiori' }" vizType="column" legendVisible="true"
+               vizProperties="{plotArea: { drawingEffect: 'glossy' },title:{ text:'Column Chart'}}" >
+                    <viz:dataset>
+                        <viz.data:FlattenedDataset data="{oJChartsProductsModel>/products}">
+                            <viz.data:dimensions>
+                                <viz.data:DimensionDefinition name="Product Category" value="{PRODUCTCATEGORY}" />
+                            </viz.data:dimensions>
+                            <viz.data:measures>
+                                <viz.data:MeasureDefinition group="1" name="Current Stocks" value="{STOCK_CURRENT_YEAR__MTD}" />
+                                <viz.data:MeasureDefinition group="1" name="Current NetQty" value="{QTY_CURRENT_YEAR_MTD}" />
+                                 <viz.data:MeasureDefinition group="1" name="Previous Stocks" value="{STOCK_PREVIOUS_YEAR__MTD}" />
+                                <viz.data:MeasureDefinition group="1" name="Previous NetQty" value="{QTY_PREVIOUS_YEAR__MTD}" />
+                            </viz.data:measures>
+                        </viz.data:FlattenedDataset>
+                    </viz:dataset>
+                    <viz:feeds>
+                         <viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Current Stocks" />
+                         <viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Current NetQty" />
+                          <viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Previous Stocks" />
+                         <viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Previous NetQty" />
+                        <viz.feeds:FeedItem uid="categoryAxis" type="Dimension" values="Product Category" />
+                    </viz:feeds>
+                </viz:VizFrame>
+
+                 <viz:VizFrame id="idColumnChartWTD" visible="false" busy="false" busyIndicatorDelay="1000"  uiConfig="{ 'applicationSet': 'fiori' }" vizType="column" legendVisible="true"
+               vizProperties="{plotArea: { drawingEffect: 'glossy' },title:{ text:'Column Chart'}}" >
+                    <viz:dataset>
+                        <viz.data:FlattenedDataset data="{oJChartsProductsModel>/products}">
+                            <viz.data:dimensions>
+                                <viz.data:DimensionDefinition name="Product Category" value="{PRODUCTCATEGORY}" />
+                            </viz.data:dimensions>
+                            <viz.data:measures>
+                                <viz.data:MeasureDefinition group="1" name="Current Stocks" value="{STOCK_CURRENT_YEAR_WEEK}" />
+                                <viz.data:MeasureDefinition group="1" name="Current NetQty" value="{QTY_CURRENT_YEAR_WEEK}" />
+                                 <viz.data:MeasureDefinition group="1" name="Previous Stocks" value="{STOCK_PREVIOUS_YEAR_WEEK}" />
+                                <viz.data:MeasureDefinition group="1" name="Previous NetQty" value="{QTY_PREVIOUS_YEAR_WEEK}" />
+                            </viz.data:measures>
+                        </viz.data:FlattenedDataset>
+                    </viz:dataset>
+                    <viz:feeds>
+                        <viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Current Stocks" />
+                         <viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Current NetQty" />
+                          <viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Previous Stocks" />
+                         <viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Previous NetQty" />
+                        <viz.feeds:FeedItem uid="categoryAxis" type="Dimension" values="Product Category" />
+                    </viz:feeds>
+                </viz:VizFrame>
+                 </FlexBox>
+                </Panel>
+                </VBox> 
+                 <VBox class="zEP_cardsSec">
+                 	<card:Card width="300px" class="zEP_cards">
+			<card:header>
+				<card:CardHeader class="zEP_cards123" titleText="{oJTopProductModel>/Product/0/STOCK} {oJTopProductModel>/Product/0/PRODUCTNAME} Stock" subtitleText="Top Selling Product Name">
+					<card:avatar>
+						<card:Icon class="zEP_cardIcon" name="sap-icon://trend-up" />
+					</card:avatar>
+					
+				</card:CardHeader>
+			</card:header>
+		</card:Card>
+
+        <card:Card width="300px" class="zEP_cards">
+			<card:header>
+				<card:CardHeader titleText="{oJTopProductModel1>/Product/0/STOCK} {oJTopProductModel1>/Product/0/PRODUCTCATEGORY} Stock" subtitleText="Top Selling Product Category">
+					<card:avatar>
+						<card:Icon name="trend-up" />
+					</card:avatar>
+				</card:CardHeader>
+			</card:header>
+			
+		</card:Card>
+        <card:Card width="300px" class="zEP_cards">
+			<card:header>
+				<card:CardHeader titleText="{oJTopProductModel2>/Product/0/PRODUCTNAME}, {oJTopProductModel2>/Product/1/PRODUCTNAME} , {oJTopProductModel2>/Product/2/PRODUCTNAME}" subtitleText="Top Trending Product Names">
+					<card:avatar>
+						<card:Icon name="sap-icon://product" />
+					</card:avatar>
+					
+				</card:CardHeader>
+			</card:header>
+			
+		</card:Card>
+                 </VBox>
+            </HBox>
+            
+           
+
+                <ui:Table class="sapUiTinyMarginBottom sapUiSmallMarginTop" id="idEventDetailReportTable"  fixedColumnCount="0"  rows="{oJProductsModel>/Products}" visible="true" selectionMode="None"  filter="onAfterReportColumnFilter">
                     <ui:columns>
                         <ui:Column  sortProperty="ProductId" filterProperty="ProductId">
                             <Text text="Product ID" class="{}"></Text>
                             <ui:template>
-                                <Text text="{oJProductsModel>ProductId}">
+                                <Text text="{oJProductsModel>PRODUCTID}">
                                 </Text>
                             </ui:template>
                         </ui:Column>
                         <ui:Column  sortProperty="ProductName" filterProperty="ProductName">
                             <Text text="Product Name"></Text>
                             <ui:template>
-                                <Text text="{oJProductsModel>ProductName}">
+                                <Text text="{oJProductsModel>PRODUCTNAME}">
                                 </Text>
                             </ui:template>
                         </ui:Column>
                          <ui:Column  sortProperty="ProductCategory" filterProperty="ProductCategory">
                             <Text text="Product Category"></Text>
                             <ui:template>
-                                <Text text="{oJProductsModel>ProductCategory}">
+                                <Text text="{oJProductsModel>PRODUCTCATEGORY}">
                                 </Text>
                             </ui:template>
                         </ui:Column>
                          <ui:Column  sortProperty="CreatedOn" filterProperty="CreatedOn">
                             <Text text="Added on"></Text>
                             <ui:template>
-                                <Text text="{oJProductsModel>CreatedOn}">
+                                <Text text="{oJProductsModel>ADDEDON}">
                                 </Text>
                             </ui:template>
                         </ui:Column>
                          <ui:Column  sortProperty="ExpiryDate" filterProperty="ExpiryDate">
                             <Text text="Expiry Date"></Text>
                             <ui:template>
-                                <Text text="{oJProductsModel>ExpiryDate}">
+                                <Text text="{oJProductsModel>EXPIREDATE}">
                                 </Text>
                             </ui:template>
                         </ui:Column>
                          <ui:Column  sortProperty="NetQty" filterProperty="NetQty">
                             <Text text="Net Quantity"></Text>
                             <ui:template>
-                                <Text text="{oJProductsModel>NetQty}">
+                                <Text text="{oJProductsModel>CC_QTY}">
                                 </Text>
                             </ui:template>
                         </ui:Column>
@@ -97,20 +227,24 @@
                         <ui:Column  sortProperty="Stock" filterProperty="Stock">
                             <Text text="Stocks"></Text>
                             <ui:template>
-                                <Text text="{oJProductsModel>Inventory/Stock}">
+                                <Text text="{oJProductsModel>CC_STOCK}">
                                 </Text>
                             </ui:template>
                         </ui:Column>
-                        <ui:Column  sortProperty="Units" filterProperty="Units">
-                            <Text text="Unit"></Text>
+                       
+                         <ui:Column  sortProperty="" filterProperty="">
+                            <Text text="Transfer"></Text>
                             <ui:template>
-                                <Text text="{oJProductsModel>Units}">
-                                </Text>
+                                <Button tooltip="Transfer Product" press="fnOntransfer" icon="sap-icon://shipping-status" class="transferIcon" enabled="{path: 'oJProductsModel>CC_STOCK', formatter : '.enableTransfer'}"/>
+                               
                             </ui:template>
                         </ui:Column>
                     </ui:columns>
                 </ui:Table>
+                 </VBox>
             </Panel>
+            </HBox>
         </content>
+        
     </Page>
 </core:View>

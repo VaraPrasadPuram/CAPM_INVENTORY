@@ -1,10 +1,15 @@
-POST  http://localhost:4004/Products
-Content-Type: application/json
+GET   http://localhost:4004/catalog/Users
+# Content-Type:application/json
 
-{"ProductId":"P101",
- "ProductCategory":"Veg",
- "ProductName":"Apple",
- "ProductType":"temp",
-"UOM":"5",
-"Active":true
- }
+# {
+# 	"Username": ilip_ST,
+# 	"Password": "12345",
+# 	"EmailId": "ASDF_ST@gmail.com",
+# 	"ImageURL": "sdasd"
+# }
+### Security testing
+GET   http://localhost:4004/catalog/Products
+
+### Test locally with the Mock stratagy
+GET   http://localhost:4004/catalog/ProductsInventory
+Authorization: Basic VaraPrasad:

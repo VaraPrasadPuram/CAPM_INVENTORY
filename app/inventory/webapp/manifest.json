@@ -120,12 +120,27 @@
           ]
         },
         {
+          "name": "RouteTargetAnalytics",
+          "pattern": "TargetAnalytics",
+          "target": [
+            "TargetAnalytics"
+          ]
+        },
+        {
           "name": "RouteAddInventory",
           "pattern": "AddInventory",
           "target": [
             "AddInventory"
           ]
+        },
+        {
+          "name": "ProductTransfer",
+          "pattern": "ProductTransfer",
+          "target": [
+            "ProductTransfer"
+          ]
         }
+        
       ],
       "targets": {
         "TargetLogin": {
@@ -142,6 +157,13 @@
           "viewId": "Products",
           "viewName": "Products"
         },
+        "TargetAnalytics": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "AnalyticDashboard",
+          "viewName": "AnalyticDashboard"
+        },
         "AddProduct": {
           "viewType": "XML",
           "transition": "slide",
@@ -155,6 +177,13 @@
           "clearControlAggregation": false,
           "viewId": "AddInventory",
           "viewName": "AddInventory"
+        },
+        "ProductTransfer": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "ProductTransfer",
+          "viewName": "ProductTransfer"
         }
       }
     },

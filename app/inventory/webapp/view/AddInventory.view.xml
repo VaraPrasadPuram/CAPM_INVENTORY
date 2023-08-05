@@ -1,23 +1,30 @@
 <mvc:View controllerName="com.apple.assign.inventory.controller.AddInventory" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m"  xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
     <Page id="page" title="{i18n>title}" showHeader="false">
-        <Panel class="zEP_headerToolbar">
-            <Toolbar class="zEP_toolbarNoBdr">
-                <Image id="idnotifaction" width="4rem" class="zEP_iconNotification" src="images/Wipro_logo_PNG2.png" />
+
+       <Panel class="zEP_headerTop">
+            <Toolbar class="zEP_titleBar zEP_container">
+                <VBox>
+                <Title text="Welcome to IMS" class="zEP_title" />
+                 <Title text="Process of sourcing, storing and overseeing a company's inventory" class="zEP_subTitle" />
+                </VBox>
                 <ToolbarSpacer />
-                <Title text="{i18n>title}" class="zEP_titleTxt" />
-                <ToolbarSpacer />
-                <Avatar displaySize="S" backgroundColor="Transparent" press="onPress" />
+                	<Avatar src="{oJLoginuserModel>/User/ImageURL}" displaySize="S" backgroundColor="Transparent" press="onPress"/>
             </Toolbar>
         </Panel>
-
-        <Panel width="auto" class="sapUiResponsiveMargin">
+               <Panel class="zEP_actionBtns">
+        <Toolbar class="zEP_toolbarNoBdr">
+            <ToolbarSpacer />
+            <Button text="{i18n>home}" press="onClickHomeBtn" />
+            <Button text="{i18n>addProdMaster}" press="onClickAddProdMaster" />
+            <Button text="{i18n>anlyticDashboard}" press="onClickAnlyticDashboard" />
+        </Toolbar>
+        </Panel>
+<HBox  class="zEP_container">
+        <Panel class="zEP_formBox">
             <headerToolbar>
                 <OverflowToolbar>
                     <Title text="Add Product Inventory" />
                     <ToolbarSpacer />
-                    <Button text="{i18n>home}" press="onClickHomeBtn" />
-                    <Button text="{i18n>addProdMaster}" press="onClickAddProdMaster" />
-                    <Button text="{i18n>anlyticDashboard}" press="onClickAnlyticDashboard" />
                 </OverflowToolbar>
             </headerToolbar>
 
@@ -35,44 +42,55 @@
                 emptySpanL="0"
                 emptySpanM="0"
                 emptySpanS="0"
-                columnsXL="2"
-                columnsL="2"
+                columnsXL="3"
+                columnsL="3"
                 columnsM="1"
                 singleContainerFullSize="false"
             >
                 <f:content>
                     <core:Title text="" />
-                    <Label text="Product ID" required="true" />
-                    <Input value="{addProdInvetoryModel>/ProductId}" />
-                    <Label text="Product Category" required="true" />
-                    <Input value="{addProdInvetoryModel>/ProductCategory}" />
-                    <Label text="Product Type" required="true" />
-                    <Input value="{addProdInvetoryModel>/ProductType}" />
-                    <Label text="Added On" required="true" />
-                    <Input value="{addProdInvetoryModel>/AddedOn}" />
-                    <Label text="Added By" required="true" />
-                    <Input value="{addProdInvetoryModel>/AddedBy}" />
-                    <Label text="Quantity" required="true" />
-                    <Input value="{addProdInvetoryModel>/Qty}" />
-                    <core:Title text="" />
+                    <Label class="zEP_label" text="Product ID" required="true" />
+                    <ComboBox class="zEP_input" showSecondaryValues= "true" value="{addProdInvetoryModel>/ProductId}" items="{
+						path: 'oJProductsModel>/Products',
+						sorter: { path: 'ProductId' }
+					}" selectionChange="onproductselect">
+					<core:ListItem key="{oJProductsModel>ProductId}" additionalText="{oJProductsModel>ProductName}" text="{oJProductsModel>ProductId}"/>
+				</ComboBox>
+                    <Label class="zEP_label" text="Product Category" required="true" />
+                    <Input class="zEP_input" value="{addProdInvetoryModel>/ProductCategory}" />
+                    <Label class="zEP_label" text="Product Type" required="true" />
+                    <Input class="zEP_input" value="{addProdInvetoryModel>/ProductType}" />
+                    <Label class="zEP_label" text="Added On" required="true" />
+                    <Input class="zEP_input" value="{addProdInvetoryModel>/AddedOn}" />   <core:Title text="" />
+                    <Label class="zEP_label" text="Added By" required="true" />
+                    <Input class="zEP_input" value="{addProdInvetoryModel>/AddedBy}" />
+                    
+                    <Label class="zEP_label" text="Quantity" required="true" />
+                    <Input class="zEP_input" value="{addProdInvetoryModel>/Qty}" />
+                 
                    
-                    <Label text="Unit of Measure" required="true" />
-                    <Input value="{addProdInvetoryModel>/UOM}" />
-                    <Label text="Expiry Date" required="true" />
-                    <Input value="{addProdInvetoryModel>/ExpireDate}" />
-                    <Label text="Batch Number" required="true" />
-                    <Input value="{addProdInvetoryModel>/BatchNo}" />
+                    <Label class="zEP_label" text="Unit of Measure" required="true" />
+                    <Input class="zEP_input" value="{addProdInvetoryModel>/UOM}" />
+                    <Label class="zEP_label" text="Expiry Date" required="true" />
+                    <Input class="zEP_input" value="{addProdInvetoryModel>/ExpireDate}" />
+                       <core:Title text="" />
+                    <Label class="zEP_label" text="Batch Number" required="true" />
+                    <Input class="zEP_input" value="{addProdInvetoryModel>/BatchNo}" />
 
-                    <Label text="Stocks" required="true" />
-                    <Input value="{addProdInvetoryModel>/Stock}" />
-                    <Label text="Unit" required="true" />
-                    <Input value="{addProdInvetoryModel>/Unit}" />
+                    <Label class="zEP_label" text="Stocks" required="true" />
+                    <Input class="zEP_input" value="{addProdInvetoryModel>/Stock}" />
+                    <Label class="zEP_label" text="Unit" required="true" />
+                    <Input class="zEP_input" value="{addProdInvetoryModel>/Unit}" />
 
-                    <Label text="" />
-                    <Button text="Submit" press="onPressAddInventorySubmit" />
+                   	<core:Title text="" />
+                                          <HBox> </HBox><core:Title text="" /><HBox> </HBox><core:Title text="" />
+                                            <HBox class="zEP_pullRight">   
+                 <Button class="zEP_primary" text="Submit" press="onPressAddInventorySubmit" />
+     </HBox>
                 </f:content>
             </f:SimpleForm>
             <!-- </VBox> -->
         </Panel>
+           </HBox>
     </Page>
 </mvc:View>
